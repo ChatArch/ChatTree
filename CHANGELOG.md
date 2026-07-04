@@ -1,9 +1,13 @@
 # Changelog
 
-## YYYY-MM-DD
+## 0.1.0 - 2026-07-05
 
 ### Added
 
-### Changed
+- First real ChatTree release through GitHub Actions and PyPI Trusted Publisher.
 
-### Fixed
+## 0.0.1 - 2026-07-05
+
+### Added
+
+- Placeholder release to reserve the PyPI project name before Publisher setup.
