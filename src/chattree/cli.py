@@ -2,53 +2,22 @@
 
 from __future__ import annotations
 
-import inspect
-from typing import cast
-
 import click
+from chatstyle import add_tree_option
 
 from chattree import __version__
-
-
-def _purpose(command: click.Command) -> str:
-    text = command.short_help or inspect.getdoc(command.callback) or ""
-    return " ".join(text.strip().split()).rstrip(".")
-
-
-def _render_cli_tree(root: click.Group) -> str:
-    """Render the CLI tree from the registered Click command surface."""
-
-    children = [(name, command) for name, command in root.commands.items() if not command.hidden]
-    lines = [f"chattree  # {_purpose(root)}"]
-    root_entries = [
-        ("--help", "show command help"),
-        ("--version", "show the installed package version"),
-        ("--tree", "show this CLI tree"),
-    ]
-    for index, (option, purpose) in enumerate(root_entries):
-        connector = "└──" if not children and index == len(root_entries) - 1 else "├──"
-        lines.append(f"{connector} {option}  # {purpose}")
-    for index, (name, command) in enumerate(children):
-        connector = "└──" if index == len(children) - 1 else "├──"
-        lines.append(f"{connector} {name}  # {_purpose(command)}")
-    return "\n".join(lines)
 
 
 @click.group(
     name="chattree",
     invoke_without_command=True,
     no_args_is_help=True,
-    context_settings={"help_option_names": ["-h", "--help"]},
 )
 @click.version_option(__version__, prog_name="chattree")
-@click.option("--tree", "show_tree", is_flag=True, is_eager=True, help="Show this CLI tree.")
-@click.pass_context
-def main(ctx: click.Context, show_tree: bool) -> None:
+@add_tree_option(renderer_options={"root_name": "chattree"})
+def main() -> None:
     """ChatTree placeholder package for tree-oriented workflows."""
-
-    if show_tree:
-        click.echo(_render_cli_tree(cast(click.Group, ctx.command)))
-        ctx.exit(0)
+    pass
 
 
 if __name__ == "__main__":

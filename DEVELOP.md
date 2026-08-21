@@ -2,7 +2,10 @@
 
 ## CLI Rules
 
-- Current root-only commands use Click only; add bounded `chatenv` / `chatstyle` dependencies only when real config or interactive commands need them.
+- Use `chatstyle>=0.2.0,<0.3.0` as the canonical CLI tree and interaction runtime.
+- Keep the public root explicitly named `chattree`; expose `--version`, `--tree`, and `--tree-brief`.
+- Use ChatStyle `add_tree_option()` and the registered Click renderer instead of a package-local tree implementation.
+- The package currently has no env/profile/config behavior, so it does not depend on ChatEnv. If configuration is added, register a typed provider and use `chatenv>=0.2.10,<0.3.0` with ChatEnv-managed storage paths.
 - Prefer reusable Python APIs before CLI wiring for new tree-oriented capabilities.
 - Missing required args should auto-enter interactive mode only when recoverable and explicitly designed.
 - `-i` forces interactive mode; `-I` disables prompting and must fail fast.

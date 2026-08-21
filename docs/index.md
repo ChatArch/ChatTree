@@ -8,7 +8,7 @@
 
     ---
 
-    查看当前真实命令面：[`chattree --tree`](cli-tree.md)。
+    查看当前真实命令面：[`chattree --tree`](cli-tree.md) / `chattree --tree-brief`。
 
 -   :material-file-tree: **Tree 边界**
 
@@ -20,7 +20,7 @@
 
     ---
 
-    `--tree`、README、MkDocs 和测试必须同步更新。
+    `--tree`、`--tree-brief`、README、MkDocs 和测试必须同步更新。
 
 </div>
 
@@ -30,6 +30,7 @@
 pip install ChatTree
 chattree --version
 chattree --tree
+chattree --tree-brief
 ```
 
 ## 开发验证

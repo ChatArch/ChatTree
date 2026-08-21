@@ -8,7 +8,7 @@
 
     ---
 
-    Inspect the current real command surface: [`chattree --tree`](cli-tree.md).
+    Inspect the current real command surface: [`chattree --tree`](cli-tree.md) / `chattree --tree-brief`.
 
 -   :material-file-tree: **Tree Boundary**
 
@@ -20,7 +20,7 @@
 
     ---
 
-    `--tree`, README, MkDocs, and tests must stay synchronized.
+    `--tree`, `--tree-brief`, README, MkDocs, and tests must stay synchronized.
 
 </div>
 
@@ -30,6 +30,7 @@
 pip install ChatTree
 chattree --version
 chattree --tree
+chattree --tree-brief
 ```
 
 ## Development Verification
