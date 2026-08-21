@@ -1,19 +1,37 @@
 # CLI Tree
 
-`chattree --tree` is generated from the real registered Click command surface. `ChatTree` currently exposes root-level package information entries only and no business subcommands; a template `hello` command is not part of the public interface.
+`ChatTree` is currently a root-only CLI. It uses the shared `chatstyle.add_tree_option()` integration to generate both trees from the registered Click command surface:
 
-## Top-level command
+- `chattree --tree` includes parameter signatures for interface review.
+- `chattree --tree-brief` keeps the same nodes and descriptions while omitting signatures.
+
+There are no business-command parameters yet, so the full and brief views are identical. This page must not invent future commands; the template `hello` command is not part of the public interface.
+
+## Full command tree
 
 ```text
-chattree  # ChatTree placeholder package for tree-oriented workflows
-├── --help  # show command help
-├── --version  # show the installed package version
-└── --tree  # show this CLI tree
+chattree
+├── --help  # Show this message and exit.
+├── --version  # Show the version and exit.
+├── --tree  # Print the registered CLI tree and exit.
+└── --tree-brief  # Print the registered CLI tree without parameter signatures and exit.
+```
+
+## Brief command tree
+
+```text
+chattree
+├── --help  # Show this message and exit.
+├── --version  # Show the version and exit.
+├── --tree  # Print the registered CLI tree and exit.
+└── --tree-brief  # Print the registered CLI tree without parameter signatures and exit.
 ```
 
 ## Status Contract
 
-- `chattree --help` must expose `--tree`.
-- `chattree --tree` must exit 0 and list only real registered commands/options.
+- `chattree --help` must expose `--tree` and `--tree-brief`.
+- `chattree --tree` must exit 0 and show the registered surface with parameter signatures.
+- `chattree --tree-brief` must exit 0 and show the same surface without signatures.
 - `chattree hello` must fail; `hello` is not a business command.
-- Future tree capabilities must add reusable Python APIs first, then CLI commands, and then update this page.
+- The current entrypoint only prints text; it does not read or mutate project trees or print/store sensitive values.
+- Future tree capabilities must add reusable Python APIs first, then CLI commands, and then update both trees.
